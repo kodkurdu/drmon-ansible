@@ -1,0 +1,15 @@
+- name: update step status job
+  hosts: all
+  tasks:
+    - name: update step status
+      uri:
+        url: "{{ drmon_api }}/jobs/updateStep/{{ drmonJobID }}"
+        method: PUT
+        headers:
+          Authorization: "{{ drmonToken }}"
+        body_format: json
+        body: '{ "dsid": "{{ dsid }}", "status": "IN PROGRESS" }'
+        force_basic_auth: no
+        validate_certs: False
+      register: content
+      until: content.status == 200
