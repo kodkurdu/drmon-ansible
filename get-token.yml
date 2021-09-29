@@ -14,3 +14,7 @@
     - name: print token
       debug:
         msg: "{{ content.json.token }}"
+    - name: set the token var as global
+      set_stats:
+        data:
+          drmonToken: "{{ content.json.token }}"
