@@ -1,0 +1,22 @@
+- name: launch job
+  hosts: all
+  tasks:
+    - name: get token
+      uri:
+        url: "{{ drmon_api }}/jobs/launch"
+        method: POST
+        headers:
+          Authorization: "{{ drmonToken }}"
+        body_format: json
+        body: '{ "did": "{{ did }}", "name": "set a job name here" }'
+        force_basic_auth: no
+        validate_certs: False
+      register: content
+      until: content.status == 200
+    - name: print job id
+      debug:
+        msg: "{{ content.json.id }}"
+    - name: set the job id variable as global
+      set_stats:
+        data:
+          drmonJobID: "{{ content.json.id }}"
