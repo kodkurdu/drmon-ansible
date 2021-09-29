@@ -1,7 +1,7 @@
 - name: launch job
   hosts: all
   tasks:
-    - name: get token
+    - name: launch
       uri:
         url: "{{ drmon_api }}/jobs/launch"
         method: POST
