@@ -1,5 +1,6 @@
 - name: launch job
   hosts: all
+  ignore_errors: yes
   tasks:
     - name: launch
       uri:
