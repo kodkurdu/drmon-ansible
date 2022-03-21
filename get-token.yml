@@ -1,5 +1,6 @@
 - name: get jwtoken from drmon
   hosts: all
+  ignore_errors: yes
   tasks:
     - name: get token
       uri:
@@ -17,4 +18,4 @@
     - name: set the token var as global
       set_stats:
         data:
-          drmonToken: "{{ content.json.token }}"
+          drmonToken: global_degisken #"{{ content.json.token }}"
