@@ -9,5 +9,7 @@
           Authorization: "{{ drmonToken }}"
         force_basic_auth: no
         validate_certs: False
+        body_format: json
+        body: '{ "result": "{{ jobResult }}" }'
       register: content
       until: content.status == 200
